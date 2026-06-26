@@ -15,27 +15,27 @@ State file: `_plan/.pipeline/<PREFIX>#[IID]/pipeline-state.json` — `{ stage, g
 Parse the URL first (REFERENCE regex) → IID + origin repo → prefix `AP`/`FE`. Then print this table (substitute `<PREFIX>`, `[IID]`, and the origin repo into the branch row per REFERENCE branch naming) and **stop — ask the user to confirm before proceeding**:
 
 ```
-┌─────────────┬──────────────────────┬───────────────────────────────────────────────────────────────┐
-│    Step     │         Who          │                            You do                             │
-├─────────────┼──────────────────────┼───────────────────────────────────────────────────────────────┤
-│ Investigate │ subagent (opus)      │ — produces _plan/<PREFIX>#[IID]_INVESTIGATION.md + _REPORT.md  │
-├─────────────┼──────────────────────┼───────────────────────────────────────────────────────────────┤
-│ 🛑 GATE 0   │ main thread          │ Only if unclear — brainstorms open questions with you         │
-├─────────────┼──────────────────────┼───────────────────────────────────────────────────────────────┤
-│ Plan        │ subagent (opus)      │ — _plan/<PREFIX>#[IID]_IMPLEMENTATION_V1.md (code + estimates) │
-├─────────────┼──────────────────────┼───────────────────────────────────────────────────────────────┤
-│ 🛑 GATE 1   │ you                  │ Approve the plan or request edits (→ V2/V3)                   │
-├─────────────┼──────────────────────┼───────────────────────────────────────────────────────────────┤
-│ Code        │ main thread (sonnet) │ applies plan + fast PHPUnit → _<PREFIX>#[IID]_CHANGES.md       │
-├─────────────┼──────────────────────┼───────────────────────────────────────────────────────────────┤
-│ Review      │ subagent (opus)      │ — _plan/<PREFIX>#[IID]_REVIEW.md (severity-indexed)           │
-├─────────────┼──────────────────────┼───────────────────────────────────────────────────────────────┤
-│ 🛑 GATE 2   │ you                  │ fix (loop) or accept (→ full PHPUnit → UT_#[IID]_...)         │
-├─────────────┼──────────────────────┼───────────────────────────────────────────────────────────────┤
-│ Verify      │ subagent (sonnet)    │ DB + Playwright UI flow → _TEST_RESULTS.md                    │
-├─────────────┼──────────────────────┼───────────────────────────────────────────────────────────────┤
-│ Finalize    │ main thread          │ branch feature/v3/#[IID] + commit (no push/MR)                │
-└─────────────┴──────────────────────┴───────────────────────────────────────────────────────────────┘
+┌─────────────┬──────────────────────┬──────────────────────────────────────────────────────────────┐
+│    Step     │         Who          │                            You do                            │
+├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
+│ Investigate │ subagent (opus)      │ writes _plan/<PREFIX>#[IID]_INVESTIGATION.md + _REPORT.md    │
+├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
+│ 🛑 GATE 0   │ main thread          │ only if unclear — brainstorms open questions with you        │
+├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
+│ Plan        │ subagent (opus)      │ writes _plan/<PREFIX>#[IID]_IMPLEMENTATION_V1.md             │
+├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
+│ 🛑 GATE 1   │ you                  │ approve the plan or request edits (→ V2/V3)                  │
+├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
+│ Code        │ main thread (sonnet) │ applies plan + fast PHPUnit → _plan/<PREFIX>#[IID]_CHANGES.md│
+├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
+│ Review      │ subagent (opus)      │ writes _plan/<PREFIX>#[IID]_REVIEW.md (severity-indexed)     │
+├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
+│ 🛑 GATE 2   │ you                  │ fix (loop) or accept (→ full PHPUnit → UT_#[IID]_…)          │
+├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
+│ Verify      │ subagent (sonnet)    │ writes _plan/<PREFIX>#[IID]_TEST_RESULTS.md (DB + UI)        │
+├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
+│ Finalize    │ main thread          │ branch feature/v3/#[IID] + commit (no push/MR)               │
+└─────────────┴──────────────────────┴──────────────────────────────────────────────────────────────┘
 ```
 
 Wait for the user to say to proceed. Do not run any stage until they confirm.
