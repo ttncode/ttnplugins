@@ -1,0 +1,13 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ttnplugins",
+  "description": "ttncode's Claude Code plugins: the UNIOSS A→Z ticket pipeline and a personal skill toolkit.",
+  "owner": { "name": "ttncode" },
+  "plugins": [
+    {
+      "name": "unioss-pipeline",
+      "source": "./plugins/unioss-pipeline",
+      "description": "UNIOSS A→Z ticket pipeline: investigator → planner → coder → reviewer → tester, gated, with PHPUnit + Playwright verification."
+    }
+  ]
+}
