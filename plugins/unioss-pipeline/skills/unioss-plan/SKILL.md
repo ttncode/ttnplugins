@@ -11,7 +11,7 @@ Read `../unioss-pipeline/REFERENCE.md` first. **Never edit source. Write only un
 - `_plan/<PREFIX>#[IID]_INVESTIGATION.md`, including any `## Clarifications` section the orchestrator appended.
 
 ## Step 1 — Draft with writing-plans discipline
-Invoke `superpowers:writing-plans` to structure the plan: bite-sized tasks, exact file paths, and a verification per task.
+Invoke `unioss-writing-plans` to structure the plan: bite-sized tasks, exact file paths, and a verification per task.
 
 ## Step 2 — Apply the UNIOSS template
 Fill `create-implementation-plan.md` (this skill dir). All sections mandatory; **zero `TBD`**. Key requirements:

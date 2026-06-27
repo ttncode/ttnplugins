@@ -46,7 +46,7 @@ Wait for the user to say to proceed. Do not run any stage until they confirm.
 
 2. **Investigator** — dispatch the `unioss-investigator` subagent with the URL. It writes INVESTIGATION.md + REPORT.md and returns a clarity verdict + open-question count.
 
-3. **GATE 0 — Clarify (conditional).** If verdict is `NEEDS_CLARIFICATION`: invoke the **`superpowers:brainstorming` skill** in THIS thread and work the numbered Open Questions with the user through it; then append a `## Clarifications` section to INVESTIGATION.md capturing the resolutions. If `CLEAR`: skip.
+3. **GATE 0 — Clarify (conditional).** If verdict is `NEEDS_CLARIFICATION`: invoke the **`unioss-brainstorming` skill** in THIS thread and work the numbered Open Questions with the user through it; then append a `## Clarifications` section to INVESTIGATION.md capturing the resolutions. If `CLEAR`: skip.
 
 4. **Planner** — dispatch `unioss-planner` with the investigation path. It writes IMPLEMENTATION_V1.md and returns the path + estimate points.
 
