@@ -1,5 +1,5 @@
 ---
-name: ci3-simplifier
+name: codeignitor3-simplifier
 description: Simplifies and refines PHP/CodeIgniter 3 code for clarity, consistency, and maintainability while preserving all functionality. Focuses on recently modified code unless instructed otherwise.
 model: opus
 ---

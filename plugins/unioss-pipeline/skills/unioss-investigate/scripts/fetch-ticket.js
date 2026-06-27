@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const os = require('os');
 
 
 function getToken() {
-	const p = path.join(process.env.HOME, '.zshrc.local');
-	if (fs.existsSync(p)) {
-		const m = fs.readFileSync(p, 'utf8').match(/export GITLAB_TOKEN=(.+)/);
-		if (m) return m[1].trim();
+	const home = os.homedir();
+	if (home) {
+		const p = path.join(home, '.zshrc.local');
+		if (fs.existsSync(p)) {
+			const m = fs.readFileSync(p, 'utf8').match(/export GITLAB_TOKEN=(.+)/);
+			if (m) return m[1].trim();
+		}
 	}
 	return process.env.GITLAB_TOKEN;
 }
@@ -28,23 +31,25 @@ const iid = urlMatch[5];
 const token = getToken();
 if (!token) { console.error('GITLAB_TOKEN not found in env or ~/.zshrc.local'); process.exit(1); }
 
-function apiGet(endpoint) {
+async function apiGet(endpoint) {
 	const url = `${host}/api/v4/projects/${encodeURIComponent(projectPath)}/${endpoint}`;
 	try {
-		const res = execSync(`curl -s -H "PRIVATE-TOKEN: ${token}" "${url}"`).toString();
-		return JSON.parse(res);
+		const res = await fetch(url, { headers: { 'PRIVATE-TOKEN': token } });
+		if (!res.ok) { console.error(`Failed to fetch: ${url} — HTTP ${res.status}`); return null; }
+		return await res.json();
 	} catch (e) {
 		console.error(`Failed to fetch: ${url} — API request failed`);
 		return null;
 	}
 }
 
+(async () => {
 console.log(`Fetching #${iid} from ${projectPath}...`);
-const issue = apiGet(`issues/${iid}`);
+const issue = await apiGet(`issues/${iid}`);
 if (!issue || issue.message) { console.error('Fetch failed:', issue?.message ?? 'unknown'); process.exit(1); }
 
-const notes = apiGet(`issues/${iid}/notes?per_page=100`) || [];
-const links = apiGet(`issues/${iid}/links`) || [];
+const notes = await apiGet(`issues/${iid}/notes?per_page=100`) || [];
+const links = await apiGet(`issues/${iid}/links`) || [];
 
 // Convert relative /uploads/ paths to absolute web URLs
 // Format: https://gitlab.unioss.jp/-/project/:project_id/uploads/:hash/:filename
@@ -114,3 +119,4 @@ console.log(`Raw data  → ${rawPath}`);
 
 fs.writeFileSync(summaryPath, summary);
 console.log(`Summary   → ${summaryPath}`);
+})();
