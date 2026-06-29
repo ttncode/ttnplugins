@@ -9,6 +9,8 @@ description: Fetch or re-fetch a GitLab ticket's latest data. Writes RAW_TICKET_
 
 ## Step 1 — Fetch ticket data
 
+Before running the fetch, if `RAW_TICKET_DATA.json` already exists, read and record its `updated_at` and note count for comparison in Step 2.
+
 ```bash
 node "${CLAUDE_PLUGIN_ROOT}/skills/unioss-gitlab-issue-context/scripts/fetch-ticket.js" "<TICKET_URL>"
 ```
