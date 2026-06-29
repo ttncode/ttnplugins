@@ -32,7 +32,29 @@ Save `.walkthrough/<PREFIX>#[IID]/<PREFIX>#[IID]_INVESTIGATION.md` (English; kee
 
 ## Step 5 — Write `REPORT.md` (Vietnamese)
 
-Save `.walkthrough/<PREFIX>#[IID]/<PREFIX>#[IID]_REPORT.md`, Vietnamese only (column names + Japanese screen names stay as-is). Sections: `1. Mục tiêu`, `2. Kết quả điều tra` (one bullet per target field), `3. Phạm vi ảnh hưởng` (Tính năng + URLs; list only ECSite user-facing screens, verify against `_docs/ECSITE_SCREENS.md`), `4. Kết luận`. Short — no tables, no implementation detail.
+Save `.walkthrough/<PREFIX>#[IID]/<PREFIX>#[IID]_REPORT.md`. Vietnamese only — column names and Japanese screen names stay as-is. No tables. No implementation detail. Fill this template verbatim:
+
+```markdown
+# <PREFIX>#[IID] Report
+
+### 1. Mục tiêu:
+- [one bullet per goal/objective]
+
+### 2. Kết quả điều tra:
+- [one bullet per target field/area investigated]
+
+### 3. Phạm vi ảnh hưởng:
+**Tính năng**
+- [feature name (Japanese screen name)]
+
+**URLs**
+- `/path`
+
+### 4. Kết luận:
+- [one bullet per key conclusion]
+```
+
+List only ECSite user-facing screens in section 3; verify URLs against `_docs/ECSITE_SCREENS.md`.
 
 ## Step 6 — Return summary
 
