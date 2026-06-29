@@ -15,10 +15,21 @@ Query the relevant DB (read-only). Testing data after a PHPUnit run lives in `te
 `docker exec -i mysql-unioss3 mysql -u root -pProotW -e "USE <db>; SELECT ...;"`
 
 ## Step 3 — Verify UI flow
-Drive the affected screen(s) with the Playwright / chrome-devtools MCP server: navigate, perform the ticket's action, assert the expected on-screen result. Capture a snapshot when it aids the report.
+
+If any `mcp__playwright__browser_*` call fails (distribution error, connection refused, or MCP not configured), **skip all UI verification test cases**. Mark each as `SKIPPED (MCP unavailable — verify manually)` in `TEST_RESULTS.md` and list the exact UI flows the user must verify manually. DB verification (Step 2) always runs regardless.
+
+When MCP is available, drive the affected screen(s): navigate, perform the ticket's action, assert the expected on-screen result.
+
+Save screenshots to `.walkthrough/<PREFIX>#[IID]/screenshots/<step-name>.png` at meaningful moments (after navigation, after the ticket action, after asserting the result) — not on every step.
 
 ## Step 4 — Write `TEST_RESULTS.md`
-Save `.walkthrough/<PREFIX>#[IID]/<PREFIX>#[IID]_TEST_RESULTS.md`: DB verification results, UI flow steps, snapshot references, and pass/fail per acceptance criterion.
+Save `.walkthrough/<PREFIX>#[IID]/<PREFIX>#[IID]_TEST_RESULTS.md`: DB verification results, UI flow steps, and pass/fail per acceptance criterion.
+
+Link each screenshot as a relative markdown link immediately after the step it documents:
+
+```markdown
+📸 [Description of what is shown](screenshots/step-name.png)
+```
 
 ## Step 5 — Return
 Return overall pass/fail and the count of failed criteria. Do not paste the full report.
