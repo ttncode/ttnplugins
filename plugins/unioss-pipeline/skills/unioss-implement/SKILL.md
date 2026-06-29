@@ -30,4 +30,4 @@ Save `.walkthrough/<PREFIX>#[IID]_CHANGES.md`: a per-file diff manifest (path ·
 Apply the orchestrator-provided fixes and re-run the filtered tests.
 
 ## Step 5 — On GATE 2 accept (AdminPage only)
-Switch to **full mode**: uncomment the dump-import line (fresh DB), run the full suite, save output to `.walkthrough/UT_#[IID]_[YYYYMMDD]_V1`.
+Switch to **full mode**: uncomment the dump-import line (fresh DB), run the full suite, save output to `.walkthrough/UT_#[IID]_[YYYYMMDD]_V1.txt`.

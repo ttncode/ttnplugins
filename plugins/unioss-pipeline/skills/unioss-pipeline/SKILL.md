@@ -58,7 +58,7 @@ Wait for the user to say to proceed. Do not run any stage until they confirm.
 
 8. **GATE 2 — Review fix/accept.** Present findings by severity.
    - **fix** → invoke `unioss-implement` to apply fixes + re-run filtered tests → ask "re-review or proceed?"; if re-review, go to step 7.
-   - **accept** → (AdminPage) invoke `unioss-implement` full mode: uncomment the dump-import line, run the full suite → `.walkthrough/UT_#[IID]_[YYYYMMDD]_V1`.
+   - **accept** → (AdminPage) invoke `unioss-implement` full mode: uncomment the dump-import line, run the full suite → `.walkthrough/UT_#[IID]_[YYYYMMDD]_V1.txt`.
 
 9. **Tester** — dispatch `unioss-tester` with the CHANGES.md path + acceptance criteria. It writes TEST_RESULTS.md and returns pass/fail. (Both repos.) If the tester reports any UI criteria as SKIPPED (no browser MCP), note that explicitly — do NOT treat SKIPPED as a pass.
 

@@ -19,7 +19,7 @@ Visible (the human reads these):
 - `<PREFIX>#[IID]_INVESTIGATION.md`, `<PREFIX>#[IID]_REPORT.md` (vi)
 - `<PREFIX>#[IID]_IMPLEMENTATION_V{n}.md`
 - `<PREFIX>#[IID]_CHANGES.md`, `<PREFIX>#[IID]_REVIEW.md`, `<PREFIX>#[IID]_TEST_RESULTS.md`
-- `UT_#[IID]_[YYYYMMDD]_V1` (full PHPUnit run, AdminPage only)
+- `UT_#[IID]_[YYYYMMDD]_V1.txt` (full PHPUnit run, AdminPage only)
 
 Hidden (tracking only) in `.walkthrough/.pipeline/<PREFIX>#[IID]/`:
 - `RAW_TICKET_DATA.json`, `TICKET_SUMMARY.md`, `pipeline-state.json`
