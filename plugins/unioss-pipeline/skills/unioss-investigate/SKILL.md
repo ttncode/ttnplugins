@@ -9,11 +9,7 @@ Read `../unioss-pipeline/REFERENCE.md` first. **Never edit source. Write only un
 
 ## Step 1 — Fetch ticket + related issues
 
-```
-node <skill_dir>/scripts/fetch-ticket.js "<TICKET_URL>"
-```
-
-This writes `.walkthrough/.pipeline/<PREFIX>#[IID]/RAW_TICKET_DATA.json` and `TICKET_SUMMARY.md`. Then, for **every** entry returned by the `/links` endpoint, fetch that related issue too and summarize how it constrains scope. Related issues are first-class — a change is not understood until its linked issues are read.
+Invoke `unioss-gitlab-issue-context` with the ticket URL. It writes `.walkthrough/.pipeline/<PREFIX>#[IID]/RAW_TICKET_DATA.json` and `TICKET_SUMMARY.md`. Then, for **every** entry returned by the `/links` endpoint, fetch that related issue too and summarize how it constrains scope. Related issues are first-class — a change is not understood until its linked issues are read.
 
 ## Step 2 — Codebase impact analysis
 
