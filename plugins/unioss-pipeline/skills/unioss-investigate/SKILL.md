@@ -26,7 +26,7 @@ Query production for the affected tables/columns (read-only):
 
 ## Step 4 — Write `INVESTIGATION.md`
 
-Save `.walkthrough/<PREFIX>#[IID]_INVESTIGATION.md` (English; keep technical terms in Japanese):
+Save `.walkthrough/<PREFIX>#[IID]/<PREFIX>#[IID]_INVESTIGATION.md` (English; keep technical terms in Japanese):
 1. **Requirements** (REQ/CON from the ticket, translated)
 2. **Related-issue dependency map** (each linked issue → effect on this ticket)
 3. **Code map** (`file:line` table from Step 2)
@@ -36,7 +36,7 @@ Save `.walkthrough/<PREFIX>#[IID]_INVESTIGATION.md` (English; keep technical ter
 
 ## Step 5 — Write `REPORT.md` (Vietnamese)
 
-Save `.walkthrough/<PREFIX>#[IID]_REPORT.md`, Vietnamese only (column names + Japanese screen names stay as-is). Sections: `1. Mục tiêu`, `2. Kết quả điều tra` (one bullet per target field), `3. Phạm vi ảnh hưởng` (Tính năng + URLs; list only ECSite user-facing screens, verify against `_docs/ECSITE_SCREENS.md`), `4. Kết luận`. Short — no tables, no implementation detail.
+Save `.walkthrough/<PREFIX>#[IID]/<PREFIX>#[IID]_REPORT.md`, Vietnamese only (column names + Japanese screen names stay as-is). Sections: `1. Mục tiêu`, `2. Kết quả điều tra` (one bullet per target field), `3. Phạm vi ảnh hưởng` (Tính năng + URLs; list only ECSite user-facing screens, verify against `_docs/ECSITE_SCREENS.md`), `4. Kết luận`. Short — no tables, no implementation detail.
 
 ## Step 6 — Return summary
 

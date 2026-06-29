@@ -18,21 +18,21 @@ Parse the URL first (REFERENCE regex) → IID + origin repo → prefix `AP`/`FE`
 ┌─────────────┬──────────────────────┬──────────────────────────────────────────────────────────────┐
 │    Step     │         Who          │                            You do                            │
 ├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
-│ Investigate │ subagent (opus)      │ writes .walkthrough/<PREFIX>#[IID]_INVESTIGATION.md + _REPORT.md    │
+│ Investigate │ subagent (opus)      │ writes .walkthrough/<PREFIX>#[IID]/<PREFIX>#[IID]_INVESTIGATION.md + _REPORT.md    │
 ├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
 │ 🛑 GATE 0   │ main thread          │ only if unclear — brainstorms open questions with you        │
 ├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
-│ Plan        │ subagent (opus)      │ writes .walkthrough/<PREFIX>#[IID]_IMPLEMENTATION_V1.md             │
+│ Plan        │ subagent (opus)      │ writes .walkthrough/<PREFIX>#[IID]/<PREFIX>#[IID]_IMPLEMENTATION_V1.md             │
 ├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
 │ 🛑 GATE 1   │ you                  │ approve the plan or request edits (→ V2/V3)                  │
 ├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
-│ Code        │ main thread (sonnet) │ applies plan + fast PHPUnit → .walkthrough/<PREFIX>#[IID]_CHANGES.md│
+│ Code        │ main thread (sonnet) │ applies plan + fast PHPUnit → .walkthrough/<PREFIX>#[IID]/<PREFIX>#[IID]_CHANGES.md│
 ├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
-│ Review      │ subagent (opus)      │ writes .walkthrough/<PREFIX>#[IID]_REVIEW.md (severity-indexed)     │
+│ Review      │ subagent (opus)      │ writes .walkthrough/<PREFIX>#[IID]/<PREFIX>#[IID]_REVIEW.md (severity-indexed)     │
 ├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
 │ 🛑 GATE 2   │ you                  │ fix (loop) or accept (→ full PHPUnit → UT_#[IID]_…)          │
 ├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
-│ Verify      │ subagent (sonnet)    │ writes .walkthrough/<PREFIX>#[IID]_TEST_RESULTS.md (DB + UI)        │
+│ Verify      │ subagent (sonnet)    │ writes .walkthrough/<PREFIX>#[IID]/<PREFIX>#[IID]_TEST_RESULTS.md (DB + UI)        │
 ├─────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
 │ Finalize    │ main thread          │ branch feature/v3/#[IID] + commit (no push/MR)               │
 └─────────────┴──────────────────────┴──────────────────────────────────────────────────────────────┘
@@ -58,7 +58,7 @@ Wait for the user to say to proceed. Do not run any stage until they confirm.
 
 8. **GATE 2 — Review fix/accept.** Present findings by severity.
    - **fix** → invoke `unioss-implement` to apply fixes + re-run filtered tests → ask "re-review or proceed?"; if re-review, go to step 7.
-   - **accept** → (AdminPage) invoke `unioss-implement` full mode: uncomment the dump-import line, run the full suite → `.walkthrough/UT_#[IID]_[YYYYMMDD]_V1.txt`.
+   - **accept** → (AdminPage) invoke `unioss-implement` full mode: uncomment the dump-import line, run the full suite → `.walkthrough/<PREFIX>#[IID]/UT_#[IID]_[YYYYMMDD]_V1.txt`.
 
 9. **Tester** — dispatch `unioss-tester` with the CHANGES.md path + acceptance criteria. It writes TEST_RESULTS.md and returns pass/fail. (Both repos.) If the tester reports any UI criteria as SKIPPED (no browser MCP), note that explicitly — do NOT treat SKIPPED as a pass.
 

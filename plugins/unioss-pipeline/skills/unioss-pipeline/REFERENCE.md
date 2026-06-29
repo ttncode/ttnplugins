@@ -15,11 +15,12 @@ Both are CodeIgniter 3 / PHP 8.1. The only divergence: FrontEnd skips PHPUnit un
 
 ## Artifact Layout (project root `.walkthrough/`)
 
-Visible (the human reads these):
+Visible (the human reads these), under `.walkthrough/<PREFIX>#[IID]/`:
 - `<PREFIX>#[IID]_INVESTIGATION.md`, `<PREFIX>#[IID]_REPORT.md` (vi)
 - `<PREFIX>#[IID]_IMPLEMENTATION_V{n}.md`
 - `<PREFIX>#[IID]_CHANGES.md`, `<PREFIX>#[IID]_REVIEW.md`, `<PREFIX>#[IID]_TEST_RESULTS.md`
 - `UT_#[IID]_[YYYYMMDD]_V1.txt` (full PHPUnit run, AdminPage only)
+- `screenshots/` (tester UI screenshots)
 
 Hidden (tracking only) in `.walkthrough/.pipeline/<PREFIX>#[IID]/`:
 - `RAW_TICKET_DATA.json`, `TICKET_SUMMARY.md`, `pipeline-state.json`
